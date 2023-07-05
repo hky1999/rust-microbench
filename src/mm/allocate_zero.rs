@@ -22,7 +22,6 @@ pub fn test_mm_alloc_zeroed(rounds: usize, warmup_rounds: usize, bytes: usize) {
         let mut cnt_inside = 0;
         for _j in 0..100 {
             let start = current_cycle();
-            // let res = Global.allocate(layout);
             let res = Global.allocate_zeroed(layout);
             let end = current_cycle();
             res_list.push(res);
