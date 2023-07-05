@@ -4,10 +4,15 @@ extern crate rust_microbench;
 
 use rust_microbench::config;
 use rust_microbench::current_cycle;
+use rust_microbench::pinned_on_core;
 
 pub fn test_thread_switch(rounds: usize, warmup_rounds: usize) {
-    let _handle = thread::spawn(|| loop {
-        thread::yield_now();
+    pinned_on_core(0);
+    let _handle = thread::spawn(|| {
+        pinned_on_core(0);
+        loop {
+            thread::yield_now();
+        }
     });
 
     let mut results = vec![];

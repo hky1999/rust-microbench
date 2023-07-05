@@ -1,19 +1,21 @@
 use std::thread;
 
+extern crate core_affinity;
 extern crate rust_microbench;
 
 use rust_microbench::config;
 use rust_microbench::current_cycle;
+use rust_microbench::pinned_on_core;
 
 pub fn test_thread_spawn(rounds: usize, warmup_rounds: usize) {
-    let _handle = thread::spawn(|| loop {
-        thread::yield_now();
-    });
+    pinned_on_core(0);
 
     let mut results = vec![];
     for i in 0..rounds + warmup_rounds {
         let start = current_cycle();
-        let _handle = thread::spawn(|| {});
+        let _handle = thread::spawn(move || {
+            // let res = core_affinity::set_for_current(pin_core);
+        });
         let cnt = current_cycle() - start;
         thread::yield_now();
 

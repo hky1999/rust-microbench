@@ -6,6 +6,7 @@ extern crate rust_microbench;
 
 use rust_microbench::config;
 use rust_microbench::current_cycle;
+use rust_microbench::pinned_on_core;
 
 const PAGE_SIZE: usize = 4096;
 
@@ -78,6 +79,7 @@ fn main() {
     let bytes = config.bytes();
     println!("[[TEST]] test_mm_alloc_zeroed {bytes} bytes for {rounds} rounds, warmup {warmup_rounds} rounds");
 
+    pinned_on_core(0);
     test_mm_alloc_zeroed(rounds, warmup_rounds, bytes);
 
     println!("[TEST] test_mm_alloc_zeroed finished***");
