@@ -2,6 +2,8 @@
 name = "rust-microbench"
 version = "0.1.0"
 edition = "2021"
+authors = ["hukeyang <hky1999@buaa.edu.cn>"]
+description = "A Rust-based simple micro benchmark for heap alloc and threading"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
