@@ -26,3 +26,8 @@ path = "src/thread/thread_spawn.rs"
 [[bin]]
 name = "thread_yield"
 path = "src/thread/thread_yield.rs"
+
+[profile.release]
+debug = true
+opt-level = 3  # Optimize for size. Fix: link error when target is aarch64-unknown-shyper.
+lto = true
